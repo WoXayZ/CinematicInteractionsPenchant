@@ -1,0 +1,17 @@
+.gradle/
+build/
+run/
+runs/
+out/
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+bin/
+.DS_Store
+Thumbs.db
+
+# Third-party mod, not redistributed. Download it into libs/ to build.
+libs/CinematicInteraction-*.jar

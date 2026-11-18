@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.woxayz.cinematicpenchant.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "SceneCreateMixin",
+    "EnchantRendererMixin",
+    "EnchantStationPositions",
+    "ClientPayloadsMixin",
+    "PenchantmentScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

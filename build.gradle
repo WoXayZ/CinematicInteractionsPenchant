@@ -1,0 +1,104 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+// Jar name: cinematicpenchant-<loader>-<minecraft>-<mod version>.jar, same scheme as Penchant Reforged.
+version = "${minecraft_version}-${mod_version}"
+group = mod_group_id
+
+base {
+    archivesName = "${mod_id}-${mod_loader}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "BlameJared"
+        url = "https://maven.blamejared.com"
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    runs {
+        client {
+            client()
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+        }
+
+        configureEach {
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // File dependencies: neither mod is published to a Maven used by this workspace.
+    compileOnly files("libs/penchant-neoforge-${penchant_version}.jar")
+    localRuntime files("libs/penchant-neoforge-${penchant_version}.jar")
+    compileOnly files("libs/CinematicInteraction-${cinematic_version}-NeoForge-${minecraft_version}.jar")
+    localRuntime files("libs/CinematicInteraction-${cinematic_version}-NeoForge-${minecraft_version}.jar")
+
+    // Required by Penchant at game startup. Not a dependency of this addon.
+    localRuntime("vazkii.patchouli:Patchouli:${patchouli_version}") {
+        transitive = false
+    }
+
+    // Dev runtime only. Not a dependency of this addon.
+    localRuntime("mezz.jei:jei-1.21.1-neoforge:${jei_version}")
+}
+
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description,
+            penchant_version       : penchant_version,
+            cinematic_version      : cinematic_version,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+tasks.withType(ProcessResources).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

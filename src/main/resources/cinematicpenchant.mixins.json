@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.woxayz.cinematicpenchant.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MenuActionsIsOpenMixin",
+    "MenuActionsOpenMixin",
+    "EnchantActionsTickMixin",
+    "PenchantmentMenuMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

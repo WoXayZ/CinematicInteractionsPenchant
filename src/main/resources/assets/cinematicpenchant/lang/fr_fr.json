@@ -1,0 +1,9 @@
+{
+  "cinematicpenchant.table.books": "%s livres",
+  "cinematicpenchant.table.grindstone.ready": "Meule prête",
+  "cinematicpenchant.table.grindstone.absent": "Sans meule",
+  "cinematicpenchant.hint.scene": "Pose l'objet sur la table  ·  lapis dans la rune bleue à droite du livre  ·  touche une rune pour enchanter  ·  Échap pour reculer",
+  "cinematicpenchant.hint.scene_books": "Pose l'objet sur la table  ·  lapis dans la rune bleue à droite  ·  livre dans la rune marron à gauche pour désenchanter  ·  touche une rune  ·  Échap pour reculer",
+  "cinematicpenchant.hint.lapis": "Ajoute du lapis-lazuli pour enchanter",
+  "cinematicpenchant.hint.book": "Ajoute un livre pour désenchanter"
+}

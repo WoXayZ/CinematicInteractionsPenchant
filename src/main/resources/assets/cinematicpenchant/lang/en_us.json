@@ -1,0 +1,9 @@
+{
+  "cinematicpenchant.table.books": "%s books",
+  "cinematicpenchant.table.grindstone.ready": "Grindstone",
+  "cinematicpenchant.table.grindstone.absent": "No grindstone",
+  "cinematicpenchant.hint.scene": "Lay the item on the table  ·  lapis into the blue rune right of the book  ·  touch a rune to enchant  ·  Esc step back",
+  "cinematicpenchant.hint.scene_books": "Lay the item on the table  ·  lapis into the blue rune on the right  ·  book into the brown rune on the left to disenchant  ·  touch a rune  ·  Esc step back",
+  "cinematicpenchant.hint.lapis": "Add Lapis Lazuli to enchant",
+  "cinematicpenchant.hint.book": "Add a book to disenchant"
+}
